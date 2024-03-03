@@ -21,11 +21,11 @@ encoder_handler.pins = (
     (board.GP14, board.GP15, board.GP13,), # encoder #1 
     )
 
-keyboard.row_pins = (board.GP0, board.GP1, board.GP2, board.GP3,)
-keyboard.col_pins = (board.GP4, board.GP5, board.GP6, board.GP7, board.GP8, board.GP9, board.GP10,)
+keyboard.row_pins = (board.GP0, board.GP1, board.GP2, board.GP3, board.GP4, board.GP5,)
+keyboard.col_pins = (board.GP9, board.GP10, board.GP11, board.GP12, board.GP13, board.GP14, board.GP15,)
 keyboard.diode_orientation = DiodeOrientation.COL2ROW
 
-#									
+#	layout 1	C4 to B5			
 #		4	5	6	7	8	9	10	
 #									
 #	0	C#	D#		F#	G#	A#		
@@ -34,6 +34,17 @@ keyboard.diode_orientation = DiodeOrientation.COL2ROW
 #	3	C	D	E	F	G	A	B	
 #									
 
+#	layout2	G3 to B5	melodica	
+#		9	10	11	12	13	14	15	
+#									
+#	0				F#	G#	A#		
+#	1	C6*			F	G	A	B	
+#	2	C#	D#		F#	G#	A#		
+#	3	C4	D	E	F	G	A	B	
+#	4	C#	D#		F#	G#	A#		
+#	5	C5	D	E	F	G	A	B	
+#									
+# *might or might not add
 #  |6|7|
 # -|-|-|
 # 8|a|b|
