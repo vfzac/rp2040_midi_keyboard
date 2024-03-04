@@ -1,6 +1,7 @@
 print("kmk")
 import board
 import time
+import pulseio # for piezo buzzer
 
 from kmk.kmk_keyboard import KMKKeyboard
 from kmk.keys import KC
@@ -22,6 +23,7 @@ keyboard.modules.append(MidiKeys())
 #     (board.GP14, board.GP15, board.GP13,), # encoder #1 
 #     )
 
+# *********** pin init **********************************
 keyboard.row_pins = (board.GP0, board.GP1, board.GP2, board.GP3, board.GP4, board.GP5,)
 keyboard.col_pins = (board.GP9, board.GP10, board.GP11, board.GP12, board.GP13, board.GP14, board.GP15,)
 keyboard.diode_orientation = DiodeOrientation.COL2ROW
@@ -53,6 +55,23 @@ keyboard.diode_orientation = DiodeOrientation.COL2ROW
 # 9|c|d|
 # test here: 
 
+# ******** frequencies for the piezo buzzer ***************
+notes = {
+    'C4': 261.63,
+    'C#4': 277.18,
+    'D4': 293.66,
+    'D#4': 311.13,
+    'E4': 329.63,
+    'F4': 349.23,
+    'F#4': 369.99,
+    'G4': 392.00,
+    'G#4': 415.30,
+    'A4': 440.00,
+    'A#4': 466.16,
+    'B4': 493.88
+}
+
+
 
 def testprint(key, keyboard, *args):
     print("ee")
@@ -67,7 +86,10 @@ keyboard.keymap = [
      KC.MIDI_NOTE(octave, velo), KC.MIDI_NOTE(octave + 2, velo), KC.MIDI_NOTE(octave + 4, velo), KC.MIDI_NOTE(octave + 5, velo), KC.MIDI_NOTE(octave + 7, velo), KC.MIDI_NOTE(octave + 9, velo), KC.MIDI_NOTE(octave + 11, velo),
      KC.MIDI_NOTE(octave + 13, velo), KC.MIDI_NOTE(octave + 15, velo), KC.NO,					 KC.MIDI_NOTE(octave + 18, velo), KC.MIDI_NOTE(octave + 20, velo), KC.MIDI_NOTE(octave + 22, velo), KC.NO,
      KC.MIDI_NOTE(octave + 12, velo), KC.MIDI_NOTE(octave + 14, velo), KC.MIDI_NOTE(octave + 16, velo), KC.MIDI_NOTE(octave + 17, velo), KC.MIDI_NOTE(octave + 19, velo), KC.MIDI_NOTE(octave + 21, velo), KC.MIDI_NOTE(octave + 22, velo),
-     ]
+     ],
+    [
+        
+    ]
 ]
 
 # BENDDOWN = KC.NO
