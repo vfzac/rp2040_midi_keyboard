@@ -28,14 +28,6 @@ keyboard.row_pins = (board.GP0, board.GP1, board.GP2, board.GP3, board.GP4, boar
 keyboard.col_pins = (board.GP9, board.GP10, board.GP11, board.GP12, board.GP13, board.GP14, board.GP15,)
 keyboard.diode_orientation = DiodeOrientation.COL2ROW
 
-#	layout 1	C4 to B5			
-#		4	5	6	7	8	9	10	
-#									
-#	0	C#	D#		F#	G#	A#		
-#	1	C	D	E	F	G	A	B	
-#	2	C#	D#		F#	G#	A#		
-#	3	C	D	E	F	G	A	B	
-#									
 
 #	layout2	F3 to B5	melodica	
 #		9	10	11	12	13	14	15	
@@ -70,6 +62,8 @@ notes = {
     'A#4': 466.16,
     'B4': 493.88
 }
+# Set up the buzzer PWM output
+buzzer = pulseio.PWMOut(board.D16, duty_cycle=0, frequency=440, variable_frequency=True)
 
 
 
@@ -79,7 +73,7 @@ def testprint(key, keyboard, *args):
 velo = 80
 octave = 60 # C4/Middle C - add or minus to get note
 # KC.NO, = disabled key 
-keyboard.keymap = [
+keyboard.keymap = [9
     [KC.NO,                  KC.NO,                  KC.NO,					 KC.MIDI_NOTE(octave - 6, velo), KC.MIDI_NOTE(octave - 4, velo), KC.MIDI_NOTE(octave - 2, velo), KC.NO,
      KC.NO,                  KC.NO,                  KC.NO,                  KC.MIDI_NOTE(octave - 7, velo), KC.MIDI_NOTE(octave - 5, velo), KC.MIDI_NOTE(octave - 3, velo), KC.MIDI_NOTE(octave - 1, velo),
      KC.MIDI_NOTE(octave + 1, velo), KC.MIDI_NOTE(octave + 3, velo), KC.NO,					 KC.MIDI_NOTE(octave + 6, velo), KC.MIDI_NOTE(octave + 8, velo), KC.MIDI_NOTE(octave + 10, velo), KC.NO,
