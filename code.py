@@ -65,7 +65,13 @@ notes = {
 # Set up the buzzer PWM output
 buzzer = pulseio.PWMOut(board.D16, duty_cycle=0, frequency=440, variable_frequency=True)
 
-
+def play_note(note_name, duration):
+    frequency = notes.get(note_name)
+    if frequency is not None:
+        buzzer.frequency = frequency
+        buzzer.duty_cycle = 65536 // 2  # 50% duty cycle
+        time.sleep(duration)
+        buzzer.duty_cycle = 0
 
 def testprint(key, keyboard, *args):
     print("ee")
