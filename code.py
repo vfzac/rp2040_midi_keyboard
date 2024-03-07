@@ -47,31 +47,6 @@ keyboard.diode_orientation = DiodeOrientation.COL2ROW
 # 9|c|d|
 # test here: 
 
-# ******** frequencies for the piezo buzzer ***************
-notes = {
-    'C4': 261.63,
-    'C#4': 277.18,
-    'D4': 293.66,
-    'D#4': 311.13,
-    'E4': 329.63,
-    'F4': 349.23,
-    'F#4': 369.99,
-    'G4': 392.00,
-    'G#4': 415.30,
-    'A4': 440.00,
-    'A#4': 466.16,
-    'B4': 493.88
-}
-# Set up the buzzer PWM output
-buzzer = pulseio.PWMOut(board.D16, duty_cycle=0, frequency=440, variable_frequency=True)
-
-def play_note(note_name, duration):
-    frequency = notes.get(note_name)
-    if frequency is not None:
-        buzzer.frequency = frequency
-        buzzer.duty_cycle = 65536 // 2  # 50% duty cycle
-        time.sleep(duration)
-        buzzer.duty_cycle = 0
 
 def testprint(key, keyboard, *args):
     print("ee")
@@ -79,12 +54,12 @@ def testprint(key, keyboard, *args):
 velo = 80
 octave = 60 # C4/Middle C - add or minus to get note
 # KC.NO, = disabled key 
-keyboard.keymap = [9
-    [KC.NO,                  KC.NO,                  KC.NO,					 KC.MIDI_NOTE(octave - 6, velo), KC.MIDI_NOTE(octave - 4, velo), KC.MIDI_NOTE(octave - 2, velo), KC.NO,
-     KC.NO,                  KC.NO,                  KC.NO,                  KC.MIDI_NOTE(octave - 7, velo), KC.MIDI_NOTE(octave - 5, velo), KC.MIDI_NOTE(octave - 3, velo), KC.MIDI_NOTE(octave - 1, velo),
-     KC.MIDI_NOTE(octave + 1, velo), KC.MIDI_NOTE(octave + 3, velo), KC.NO,					 KC.MIDI_NOTE(octave + 6, velo), KC.MIDI_NOTE(octave + 8, velo), KC.MIDI_NOTE(octave + 10, velo), KC.NO,
-     KC.MIDI_NOTE(octave, velo), KC.MIDI_NOTE(octave + 2, velo), KC.MIDI_NOTE(octave + 4, velo), KC.MIDI_NOTE(octave + 5, velo), KC.MIDI_NOTE(octave + 7, velo), KC.MIDI_NOTE(octave + 9, velo), KC.MIDI_NOTE(octave + 11, velo),
-     KC.MIDI_NOTE(octave + 13, velo), KC.MIDI_NOTE(octave + 15, velo), KC.NO,					 KC.MIDI_NOTE(octave + 18, velo), KC.MIDI_NOTE(octave + 20, velo), KC.MIDI_NOTE(octave + 22, velo), KC.NO,
+keyboard.keymap = [
+    [KC.NO,                  KC.NO,   KC.NO,                           KC.MIDI_NOTE(octave - 6, velo),  KC.MIDI_NOTE(octave - 4, velo),  KC.MIDI_NOTE(octave - 2, velo),  KC.NO,
+     KC.NO,                  KC.NO,   KC.NO,                           KC.MIDI_NOTE(octave - 7, velo),  KC.MIDI_NOTE(octave - 5, velo),  KC.MIDI_NOTE(octave - 3, velo),  KC.MIDI_NOTE(octave - 1, velo),
+     KC.MIDI_NOTE(octave + 1, velo),  KC.MIDI_NOTE(octave + 3, velo),  KC.NO,					        KC.MIDI_NOTE(octave + 6, velo),  KC.MIDI_NOTE(octave + 8, velo),  KC.MIDI_NOTE(octave + 10, velo), KC.NO,
+     KC.MIDI_NOTE(octave, velo),      KC.MIDI_NOTE(octave + 2, velo),  KC.MIDI_NOTE(octave + 4, velo),  KC.MIDI_NOTE(octave + 5, velo),  KC.MIDI_NOTE(octave + 7, velo),  KC.MIDI_NOTE(octave + 9, velo),  KC.MIDI_NOTE(octave + 11, velo),
+     KC.MIDI_NOTE(octave + 13, velo), KC.MIDI_NOTE(octave + 15, velo), KC.NO,					        KC.MIDI_NOTE(octave + 18, velo), KC.MIDI_NOTE(octave + 20, velo), KC.MIDI_NOTE(octave + 22, velo), KC.NO,
      KC.MIDI_NOTE(octave + 12, velo), KC.MIDI_NOTE(octave + 14, velo), KC.MIDI_NOTE(octave + 16, velo), KC.MIDI_NOTE(octave + 17, velo), KC.MIDI_NOTE(octave + 19, velo), KC.MIDI_NOTE(octave + 21, velo), KC.MIDI_NOTE(octave + 22, velo),
      ],
     [
@@ -100,3 +75,5 @@ keyboard.keymap = [9
 
 if __name__ == '__main__':
     keyboard.go()
+
+
